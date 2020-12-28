@@ -1,6 +1,6 @@
-import logo from './fluff.png';
-import logo2 from './fluffy.png';
-import yosh from './yosh.jpg'
+import logo from '../images/fluff.png';
+import logo2 from '../images/fluffy.png';
+import yosh from '../images/yosh.jpg'
 import './App.css';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
@@ -9,6 +9,8 @@ import Carousel from 'react-bootstrap/Carousel';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { NavLink } from 'react-router-dom';
+
 
 
 function App() {
@@ -34,10 +36,8 @@ function App() {
       <Navbar.Toggle />
       <Navbar.Collapse className="justify-content-end">
         <Nav>
-          <Nav.Link href="#deets">More deets</Nav.Link>
-          <Nav.Link eventKey={2} href="#memes">
-            Dank memes
-          </Nav.Link>
+          <Nav.Link href="/about">About</Nav.Link>
+          <Nav.Link href="/available">Available</Nav.Link>
         </Nav>
       </Navbar.Collapse>
 	  </Navbar>
