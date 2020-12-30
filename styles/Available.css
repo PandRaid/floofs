@@ -1,0 +1,15 @@
+.box__color {
+	background-color: #EFF2FF;
+}
+
+.shadow {
+	box-shadow: 0 0 10px 0px rgb(0 0 0 / 20%);
+}
+
+.available__text {
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	color: #181818;
+}
+
