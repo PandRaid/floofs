@@ -1,0 +1,26 @@
+.resp {
+	width: 50%;
+	padding: 7% 5% 5% 5%;
+}
+
+.shadow {
+	box-shadow: 0 0 10px 0 rgb(0 0 0 / 20%);
+	display: flex;
+}
+
+.pad {
+	padding: 5% 5% 5% 5%
+}
+
+.spacing {
+	height: 10vh;
+}
+.about__text {
+	font-size: 1vw;
+	font-family: 'Lato', sans-serif;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	letter-spacing: .1em;
+	color: #181818;
+}

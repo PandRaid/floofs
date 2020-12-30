@@ -3,24 +3,22 @@
   justify-content: center;
   align-items: center;
   border-radius: 4px;
-  background-color: #e6f2ff;
-
-}
-
-.div1 {
-  width: 30%;
-}
-.div2 {
-  width: 70%;
-}
-
-.align__right {
+  background-color: #EFF2FF;
   text-align: start;
+
+}
+
+.padright{
+  padding-right: 2vw;
+}
+
+.padleft{
+  padding-left: 4vw;
 }
 
 .navit__link {
   margin: 1em;
-  font-size: 2vw;
+  font-size: 1.2vw;
   font-family: 'Roboto', sans-serif;
   justify-content: center;
   align-items: center;
@@ -43,11 +41,11 @@
 }
 
 .responsive {
-  width: 15%;
-  height: 15%;
+  width: 20%;
+  height: 20%;
 
 }
 .responsive-wide {
-  width: 30%;
-  height: 15%;
+  width: 40%;
+  height: 20%;
 }
