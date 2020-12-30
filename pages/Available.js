@@ -9,10 +9,28 @@ class Available extends React.PureComponent {
     return (
       <Container fluid>
       <Row className="spacing"></Row>
-      <Row className="">
+      <Row className="available__box__pad">
       	<Col></Col>
-	    <Col xs={6} md={10} className="shadow box__color available__text">
-	    	  <h1> Available Puppies </h1>
+	    <Col xs={6} md={10} className="available__box box__color">
+	    	  <h1 className="mt-2 available__text"> Available Puppies </h1>
+	    	  <hr/>
+	    	  <p> Text </p> 
+	    </Col>
+	    <Col></Col>
+	  </Row>
+	  <Row className="available__box__pad">
+      	<Col></Col>
+	    <Col xs={6} md={10} className="available__box box__color">
+	    	  <h1 className="mt-2 available__text"> Expected </h1>
+	    	  <hr/>
+	    	  <p> Text </p> 
+	    </Col>
+	    <Col></Col>
+	  </Row>
+	  <Row className="available__box__pad">
+      	<Col></Col>
+	    <Col xs={6} md={10} className="available__box box__color">
+	    	  <h1 className="mt-2 available__text"> Past Puppies </h1>
 	    	  <hr/>
 	    	  <p> Text </p> 
 	    </Col>

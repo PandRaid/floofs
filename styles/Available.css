@@ -1,15 +1,21 @@
-.box__color {
-	background-color: #EFF2FF;
+.available__box {
+	box-shadow: 0 0 10px 0px rgb(0 0 0 / 20%);
+	display: block;
 }
 
-.shadow {
-	box-shadow: 0 0 10px 0px rgb(0 0 0 / 20%);
+@font-face {
+font-family: myFont;
+src: url('../images/shink.otf');
 }
 
 .available__text {
 	justify-content: center;
 	align-items: center;
 	text-align: center;
+	font-family: myFont;
 	color: #181818;
 }
 
+.available__box__pad {
+	padding: 2% 0% 2% 0%;
+}
