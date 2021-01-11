@@ -6,18 +6,30 @@ import Col from 'react-bootstrap/Col'
 
 
 class Available extends React.PureComponent {
-  
-  replace(ext) {
-  	var text = "test";
-  	if (ext == "avail"){
-  		text = "moo";
-  	}
-  	return (
-  		<p> {text} </p>
-  		);
+
+  // Retrieves the list of items from the Express app
+  constructor(props){
+    super(props);
+    this.state = {
+      list: []
+    }
+  }
+
+  // Fetch the list on first mount
+  componentDidMount() {
+    this.getList();
+  }
+
+  // Retrieves the list of items from the Express app
+  getList = () => {
+    fetch('/avail')
+    .then(res => res.json())
+    .then(list => this.setState({ list }))
   }
 
   render() {
+  	const {list} = this.state;
+
     return (
       <Container fluid>
       <Row className="spacing"></Row>
@@ -26,7 +38,14 @@ class Available extends React.PureComponent {
 	    <Col xs={6} md={10} className="available__box box__color">
 	    	  <h1 className="mt-2 available__text"> Available Puppies </h1>
 	    	  <hr/>
-	    	  {this.replace("avail")}
+	    	 	{list.map((item) => {
+              return(
+                <div>
+                  {item}
+                </div>
+              );
+            })}
+	      
 				    	  
 	    </Col>
 	    <Col></Col>
