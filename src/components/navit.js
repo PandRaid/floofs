@@ -11,10 +11,12 @@ const Navit = () => (
     <NavLink to="/">
       <img
         src={fluff}
+        alt=""
         className="mb-4 mt-4 responsive padleft"
       />
       <img
         src={fluffy}
+        alt=""
         className="mb-4 mt-4 responsive-wide"
       />
     </NavLink>
@@ -63,12 +65,14 @@ const Navit = () => (
     </NavLink>
     <a href="https://www.instagram.com/fluffyfamilyfrenchies">
       <img
+        alt=""
         src={insta}
         className="navit__link mb-4 mt-4"
       />
     </a>
     <a href="https://www.facebook.com/fluffyfamilyfrenchies">
       <img
+        alt=""
         src={fb}
         className="navit__link mb-4 mt-4 padright"
       />

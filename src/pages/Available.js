@@ -24,11 +24,14 @@ class Available extends React.PureComponent {
   getList = () => {
     fetch('/avail')
     .then(res => res.json())
-    .then(list => this.setState({ list }))
+    .then(data => this.setState({ list : data.available }))
   }
 
   render() {
   	const {list} = this.state;
+  	if (list.length > 0){
+  		console.log("test " + list[0].name);
+  	}
 
     return (
       <Container fluid>
@@ -36,15 +39,17 @@ class Available extends React.PureComponent {
       <Row className="available__box__pad">
       	<Col></Col>
 	    <Col xs={6} md={10} className="available__box box__color">
-	    	  <h1 className="mt-2 available__text"> Available Puppies </h1>
+	    	  <h1 className="mt-2 available__text"> Available </h1>
 	    	  <hr/>
-	    	 	{list.map((item) => {
-              return(
-                <div>
-                  {item}
-                </div>
-              );
-            })}
+                  {
+                  	list.map((item) => {
+                  		return(
+                  			<div>
+                  				{item.name}
+                  			</div>
+                  		);
+                  	})
+                  }
 	      
 				    	  
 	    </Col>
@@ -53,7 +58,7 @@ class Available extends React.PureComponent {
 	  <Row className="available__box__pad">
       	<Col></Col>
 	    <Col xs={6} md={10} className="available__box box__color">
-	    	  <h1 className="mt-2 available__text"> Expected </h1>
+	    	  <h1 className="mt-2 available__text"> .. </h1>
 	    	  <hr/>
 	    	  <p> Text </p> 
 	    </Col>
@@ -62,7 +67,7 @@ class Available extends React.PureComponent {
 	  <Row className="available__box__pad">
       	<Col></Col>
 	    <Col xs={6} md={10} className="available__box box__color">
-	    	  <h1 className="mt-2 available__text"> Past Puppies </h1>
+	    	  <h1 className="mt-2 available__text"> .. </h1>
 	    	  <hr/>
 	    	  <p> Text </p> 
 	    </Col>
