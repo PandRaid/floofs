@@ -12,7 +12,7 @@ import ReactHtmlParser from 'react-html-parser';
 
   	var html = '<div class="info__text">';
   	if (list.length === 0){
-  		html += 'No pups at this time';
+  		html += 'No queens at this time';
   	}
 	else {
   		var count = 0;
