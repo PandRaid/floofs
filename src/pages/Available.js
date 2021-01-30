@@ -6,11 +6,15 @@ import Col from 'react-bootstrap/Col'
 import ReactHtmlParser from 'react-html-parser'; 
 
 
-  function getAvail() {
+  function parseFetch() {
   	var list = arguments[0];
 
-  	if (list.length > 0){
-  		var html = '<div class="info__text">';
+
+  	var html = '<div class="info__text">';
+  	if (list.length === 0){
+  		html += 'No pups at this time';
+  	}
+	else {
   		var count = 0;
 
   		list.forEach(function(entry) {
@@ -32,13 +36,11 @@ import ReactHtmlParser from 'react-html-parser';
 		    }
 		    count++;
 		});
-
-
-  		html = html + '</div>'
-  		return html;
   	}
 
 
+	html = html + '</div> </br>'
+	return html;
   }
 
 class Available extends React.PureComponent {
@@ -47,25 +49,33 @@ class Available extends React.PureComponent {
   constructor(props){
     super(props);
     this.state = {
-      list: []
+      avail: [],
+      exp: [],
+      past: []
     }
   }
 
   // Fetch the list on first mount
   componentDidMount() {
-    this.getList();
+    this.getAvail();
   }
 
   // Retrieves the list of items from the Express app
-  getList = () => {
+  getAvail = () => {
     fetch('/avail')
     .then(res => res.json())
-    .then(data => this.setState({ list : data.available }))
+    .then(data => this.setState({ avail : data.available, exp : data.expected, past : data.past }))
   }
 
-
   render() {
-  	const {list} = this.state;
+  	const {avail} = this.state;
+  	const {exp} = this.state;
+  	const {past} = this.state;
+  	console.log("B1 " + avail);
+  	console.log("B2 " + exp);
+  	console.log("B3 " + past);
+
+
 
     return (
       <Container fluid>
@@ -75,7 +85,7 @@ class Available extends React.PureComponent {
 	    <Col xs={6} md={10} className="available__box box__color">
 	    	  <h1 className="mt-2 available__text"> Available </h1>
 	    	  <hr className="break_pad"/>
-	    	  		{ReactHtmlParser (getAvail(list))}
+	    	  		{ReactHtmlParser (parseFetch(avail))}
 	      
 				    	  
 	    </Col>
@@ -85,8 +95,8 @@ class Available extends React.PureComponent {
       	<Col></Col>
 	    <Col xs={6} md={10} className="available__box box__color">
 	    	  <h1 className="mt-2 available__text"> Expected </h1>
-	    	  <hr/>
-	    	  <p> Text </p> 
+	    	  <hr className="break_pad"/>
+	    	  {ReactHtmlParser (parseFetch(exp))} 
 	    </Col>
 	    <Col></Col>
 	  </Row>
@@ -94,8 +104,8 @@ class Available extends React.PureComponent {
       	<Col></Col>
 	    <Col xs={6} md={10} className="available__box box__color">
 	    	  <h1 className="mt-2 available__text"> Past Pups </h1>
-	    	  <hr/>
-	    	  <p> Text </p> 
+	    	  <hr className="break_pad"/>
+	    	  {ReactHtmlParser (parseFetch(past))}
 	    </Col>
 	    <Col></Col>
 	  </Row>
