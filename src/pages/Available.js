@@ -71,11 +71,6 @@ class Available extends React.PureComponent {
   	const {avail} = this.state;
   	const {exp} = this.state;
   	const {past} = this.state;
-  	console.log("B1 " + avail);
-  	console.log("B2 " + exp);
-  	console.log("B3 " + past);
-
-
 
     return (
       <Container fluid>

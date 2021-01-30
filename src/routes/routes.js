@@ -6,7 +6,6 @@ import Available from '../pages/Available';
 import Queens from '../pages/Queens';
 import Studs from '../pages/Studs';
 import Pricing from '../pages/Pricing';
-import Waitlist from '../pages/Waitlist';
 
 const Routes = () => (
   <Switch>
@@ -15,7 +14,6 @@ const Routes = () => (
     <Route path="/available" component={Available} />
     <Route path="/queens" component={Queens} />
     <Route path="/Studs" component={Studs} />
-    <Route path="/waitlist" component={Waitlist} />
     <Route path="/pricing" component={Pricing} />
   </Switch>
 );

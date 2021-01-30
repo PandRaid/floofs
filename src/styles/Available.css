@@ -35,8 +35,12 @@ src: url('../images/shink.otf');
 	padding-bottom: 1%;
 }
 
+.pad_text {
+	padding-top: 5vw;
+}
+
 .wide {
-	width: 70%;
-    height: 60%;
+	width: 20vw;
+    height: 20vw;
   	box-shadow: 20px 20px #66D3FA;
 }

@@ -12,12 +12,12 @@ const Navit = () => (
       <img
         src={fluff}
         alt=""
-        className="mb-4 mt-4 responsive padleft"
+        className="mb-4 mt-2 responsive padleft"
       />
       <img
         src={fluffy}
         alt=""
-        className="mb-4 mt-4 responsive-wide"
+        className="mb-4 mt-2 responsive-wide"
       />
     </NavLink>
 
@@ -48,13 +48,6 @@ const Navit = () => (
       to="/studs"
     >
       Studs
-    </NavLink>
-    <NavLink
-      activeClassName="navit__link--active"
-      className="navit__link mb-4 mt-4"
-      to="/waitlist"
-    >
-      Waitlist
     </NavLink>
     <NavLink
       activeClassName="navit__link--active"
