@@ -8,21 +8,23 @@ import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 
 
-  function parseFetch() {
+  function text(args) {
   	var item = arguments[0];
-  	var index = arguments[1];
-  	var box = (index )
-  	var img_src = '"http://localhost:5000/static/' + item.name + '/' + item.name + '-1.jpg"';
+  	var img_name = 'http://localhost:5000/static/' + item.name + '/' + item.name + '-1.jpg';
+  	console.log(img_name);
 
-  	var body = document.getElementsByTagName(index + 'box')[0],
-    newdiv = document.createElement('div');   //create a div
-    newdiv.id = 'newid';                      //add an id
-    body.appendChild(newdiv);                 //append to the doc.body
-    body.insertBefore(newdiv,body.firstChild) //OR insert it
+  	return (
+  		<div className="info__text">
+  		<img className="wide" src={img_name}/>
+  		<br/><br/> <hr className="break_pad"/> 
+  		Name : {item.name} <br/>
+  		Birthday : {item.birthdate} <br/>
+  		Color : {item.color} <br/>
+  		{item.description} <br/>
+  		<br/>
+  		</div>
+  		);
 
-  }
-  function newRow() {
- 
   }
 
   function MyVerticallyCenteredModal(props) {
@@ -91,7 +93,7 @@ class Available extends React.PureComponent {
         show={modalShow}
         onHide={() => this.setState({modalShow : false})}
       />
-      <Row className="spacing"></Row>
+      <Row className="spacing" id="moo"></Row>
       <Row className="available__box__pad">
       	<Col></Col>
 	    <Col xs={6} md={10} className="available__box box__color">
@@ -102,21 +104,19 @@ class Available extends React.PureComponent {
 
 		    	  	{   (avail.length > 0) &&
 	    	  			avail.map((item, index) => {
-
 			    	  		return (
 			    	  			<>
-			    	  			{(index % 2) ?
+			    	  			{!(index % 2) ?
 			    	  				<Row>
 			    	  				<Col xs={2} md={2}></Col>
-			    	  				<Col id={index + 'box'} xs={4} md={4}></Col>
-			    	  				<Col id={(index + 1) + 'box'} xs={4} md={4}></Col>
+			    	  				<Col xs={4} md={4}>{text(item)}</Col>
+			    	  				<Col xs={4} md={4}>{(index < (avail.length)) && text(avail[index+1])}</Col>
 			    	  				</Row>
 			    	  				:
 			    	  				""
 			    	  			}
 			    	  			</>
 			    	  		);
-			    	  		{parseFetch(item, index)}
 		    	  		})
 		    	  	}
 		    	</div>
