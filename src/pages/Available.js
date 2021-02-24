@@ -7,27 +7,7 @@ import ReactHtmlParser from 'react-html-parser';
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 
-
-  function text(args) {
-  	var item = arguments[0];
-  	var img_name = 'http://localhost:5000/static/' + item.name + '/' + item.name + '-1.jpg';
-  	console.log(img_name);
-
-  	return (
-  		<div className="info__text">
-  		<img className="wide" src={img_name}/>
-  		<br/><br/> <hr className="break_pad"/> 
-  		Name : {item.name} <br/>
-  		Birthday : {item.birthdate} <br/>
-  		Color : {item.color} <br/>
-  		{item.description} <br/>
-  		<br/>
-  		</div>
-  		);
-
-  }
-
-  function MyVerticallyCenteredModal(props) {
+function MyVerticallyCenteredModal(props) {
   return (
     <Modal
       {...props}
@@ -57,6 +37,7 @@ import Button from 'react-bootstrap/Button'
 
 class Available extends React.PureComponent {
 
+
   // Retrieves the list of items from the Express app
   constructor(props){
     super(props);
@@ -84,13 +65,13 @@ class Available extends React.PureComponent {
   	const {avail} = this.state;
   	const {exp} = this.state;
   	const {past} = this.state;
-  	const {modalShow} = this.state;
 
 
     return (
       <Container fluid>
+      {console.log("state " + this.state.modalShow)}
       <MyVerticallyCenteredModal
-        show={modalShow}
+        show={this.state.modalShow}
         onHide={() => this.setState({modalShow : false})}
       />
       <Row className="spacing" id="moo"></Row>
@@ -109,9 +90,32 @@ class Available extends React.PureComponent {
 			    	  			{!(index % 2) ?
 			    	  				<Row>
 			    	  				<Col xs={2} md={2}></Col>
-			    	  				<Col xs={4} md={4}>{text(item)}</Col>
-			    	  				<Col xs={4} md={4}>{(index < (avail.length)) && text(avail[index+1])}</Col>
+			    	  				<Col xs={4} md={4}>
+			    	  					<div className="info__text">
+			    	  					<img className="wide" src={'http://localhost:5000/static/' + item.name + '/' + item.name + '-1.jpg'} onClick={() => this.setState({modalShow : true})}/>
+			    	  					<br/><br/><hr className="break_pad"/> 
+								  		Name : {item.name} <br/>
+								  		Birthday : {item.birthdate} <br/>
+								  		Color : {item.color} <br/>
+								  		{item.description} <br/>
+								  		<br/>
+								  		</div>
+			    	  				</Col>
+			    	  				<Col xs={4} md={4}>
+			    	  					{(index < avail.length) ?
+			    	  						<div className="info__text">
+				    	  					<img className="wide" src={'http://localhost:5000/static/' + avail[index+1].name + '/' + avail[index+1].name + '-1.jpg'} onClick={() => this.setState({modalShow : true})}/>
+				    	  					<br/><br/><hr className="break_pad"/> 
+									  		Name : {avail[index+1].name} <br/>
+									  		Birthday : {avail[index+1].birthdate} <br/>
+									  		Color : {avail[index+1].color} <br/>
+									  		{avail[index+1].description} <br/>
+									  		<br/>
+									  		</div>
+			    	  					:""}
+			    	  				</Col>
 			    	  				</Row>
+
 			    	  				:
 			    	  				""
 			    	  			}
