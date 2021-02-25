@@ -6,33 +6,37 @@ import Col from 'react-bootstrap/Col'
 import ReactHtmlParser from 'react-html-parser'; 
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
+import Carousel from 'react-bootstrap/Carousel';
 
-function MyVerticallyCenteredModal(props) {
-  return (
-    <Modal
-      {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          Modal heading
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <h4>Centered Modal</h4>
-        <p>
-          Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-          dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-          consectetur ac, vestibulum at eros.
-        </p>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
-      </Modal.Footer>
-    </Modal>
-  );
+
+function getRows(props) {
+	var rows = [];
+	var avail = arguments[0];
+
+	var url_base = 'http://localhost:5000/static/';
+
+	if (avail !==
+	 undefined && avail.pics > 0){
+		var numPics = avail.pics;
+		var name = avail.name;
+		for (var i = 0; i < numPics; i++) {
+			var url = url_base + name + '/' + name + '-' + (i+1) + '.jpg'
+		    rows.push(
+		    	<Carousel.Item>
+			    <img
+			      className="d-block w-100"
+			      src={url}
+			      alt="First slide"
+			    />
+			    <Carousel.Caption>
+			      <h3>Your new frenchie awaits</h3>
+			      <p>Premium Pups at a Family Price</p>
+			    </Carousel.Caption>
+			  </Carousel.Item>
+		    	);
+		}
+	}
+	return (rows);
 }
 
 class Available extends React.PureComponent {
@@ -45,7 +49,8 @@ class Available extends React.PureComponent {
       avail: [],
       exp: [],
       past: [],
-      modalShow: false
+      modalShow: false,
+      current: 0
     }
   }
 
@@ -65,15 +70,26 @@ class Available extends React.PureComponent {
   	const {avail} = this.state;
   	const {exp} = this.state;
   	const {past} = this.state;
+  	const {current} = this.state;
 
 
     return (
       <Container fluid>
-      {console.log("state " + this.state.modalShow)}
-      <MyVerticallyCenteredModal
-        show={this.state.modalShow}
-        onHide={() => this.setState({modalShow : false})}
-      />
+      <Modal
+	      show={this.state.modalShow}
+          onHide={() => this.setState({modalShow : false, current: []})}
+	      size="lg"
+	      aria-labelledby="contained-modal-title-vcenter"
+	      centered
+	    >
+	      <Carousel>
+	      	{
+	      	(avail.length > 0) && 
+			  getRows(avail[current])
+			}
+		  	</Carousel>
+	    </Modal>
+
       <Row className="spacing" id="moo"></Row>
       <Row className="available__box__pad">
       	<Col></Col>
@@ -92,7 +108,7 @@ class Available extends React.PureComponent {
 			    	  				<Col xs={2} md={2}></Col>
 			    	  				<Col xs={4} md={4}>
 			    	  					<div className="info__text">
-			    	  					<img className="wide" src={'http://localhost:5000/static/' + item.name + '/' + item.name + '-1.jpg'} onClick={() => this.setState({modalShow : true})}/>
+			    	  					<img className="wide" src={'http://localhost:5000/static/' + item.name + '/' + item.name + '-1.jpg'} onClick={() => this.setState({modalShow : true, current : index})}/>
 			    	  					<br/><br/><hr className="break_pad"/> 
 								  		Name : {item.name} <br/>
 								  		Birthday : {item.birthdate} <br/>
@@ -104,7 +120,7 @@ class Available extends React.PureComponent {
 			    	  				<Col xs={4} md={4}>
 			    	  					{(index < avail.length) ?
 			    	  						<div className="info__text">
-				    	  					<img className="wide" src={'http://localhost:5000/static/' + avail[index+1].name + '/' + avail[index+1].name + '-1.jpg'} onClick={() => this.setState({modalShow : true})}/>
+				    	  					<img className="wide" src={'http://localhost:5000/static/' + avail[index+1].name + '/' + avail[index+1].name + '-1.jpg'} onClick={() => this.setState({modalShow : true, current : (index+1)})}/>
 				    	  					<br/><br/><hr className="break_pad"/> 
 									  		Name : {avail[index+1].name} <br/>
 									  		Birthday : {avail[index+1].birthdate} <br/>
