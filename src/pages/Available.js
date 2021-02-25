@@ -150,17 +150,38 @@ class Available extends React.PureComponent {
 	    <Col xs={6} md={10} className="available__box box__color">
 	    	  <h1 className="mt-2 available__text"> Expected </h1>
 	    	  <hr className="break_pad"/>
+	    	  		<div className="info_text">
+
+		    	  	{   (exp.length > 0) &&
+	    	  			exp.map((item, index) => {
+			    	  		return (
+			    	  			<>
+			    	  				<Row>
+			    	  				<Col xs={3} md={3}></Col>
+			    	  				<Col xs={4} md={4}>
+			    	  					<div className="info__text">
+			    	  					<img className="double-wide" src={'http://localhost:5000/static/expected/' + item.mom+ 'x' + item.dad + '.jpg'}/>
+			    	  					<br/><br/><hr className="break_pad"/> 
+								  		Mom : {item.mom} <br/>
+								  		Mom DNA: {item.mom_dna} <br/>
+								  		Dad : {item.dad} <br/>
+								  		Dad DNA : {item.dad_dna} <br/>
+								  		Expected Date : {item.exp} <br/>
+								  		{item.description} <br/>
+								  		<br/>
+								  		</div>
+			    	  				</Col>
+			    	  				</Row>
+			    	  			</>
+			    	  		);
+		    	  		})
+		    	  	}
+		    	</div>
 	    </Col>
 	    <Col></Col>
 	  </Row>
-	  <Row className="available__box__pad">
-      	<Col></Col>
-	    <Col xs={6} md={10} className="available__box box__color">
-	    	  <h1 className="mt-2 available__text"> Past Pups </h1>
-	    	  <hr className="break_pad"/>
-	    </Col>
-	    <Col></Col>
-	  </Row>
+	  
+	  
 	</Container>
     );
   }
