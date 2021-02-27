@@ -26,6 +26,25 @@ src: url('../images/shink.otf');
 	color: #181818;
 }
 
+.info__text {
+	font-size: 1.2vw;
+	font-family: 'Lato', sans-serif;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	color: #181818;
+}
+
+.expected_text {
+	font-size: 1.2vw;
+	font-family: 'Lato', sans-serif;
+	justify-content: center;
+	align-items: center;
+	text-align: start;
+	color: #181818;
+	padding-top: 2%;
+}
+
 .available__box__pad {
 	padding: 2% 0% 2% 0%;
 }
