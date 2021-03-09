@@ -31,6 +31,13 @@ const Navit = () => (
     <NavLink
       activeClassName="navit__link--active"
       className="navit__link mb-4 mt-4"
+      to="/contact"
+    >
+      Contact
+    </NavLink>
+    <NavLink
+      activeClassName="navit__link--active"
+      className="navit__link mb-4 mt-4"
       to="/available"
     >
       Available

@@ -37,3 +37,17 @@
 	text-align: start;
 	color: #181818;
 }
+
+
+.contact__text {
+	font-size: 1.2vw;
+	font-family: 'Lato', sans-serif;
+	justify-content: center;
+	align-items: center;
+	text-align: start;
+	color: #181818;
+}
+.pad__top {
+	padding-top: 2%;
+	padding-bottom: 5%;
+}
