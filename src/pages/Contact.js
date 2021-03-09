@@ -13,8 +13,8 @@ class Contact extends React.PureComponent {
 	constructor(props) {
 	super(props);
 	this.state = {
-	  name: '',
-	  email: '',
+	  from_name: '',
+	  reply_to: '',
 	  message: '',
 	  error: '',
 	  thankyou: false
@@ -56,24 +56,14 @@ class Contact extends React.PureComponent {
 
   handleSubmit(e) {
   e.preventDefault();
+  console.log("blah " + e.target.value);
 
-  fetch('http://localhost:5000/send', {
-      method: "POST",
-      body: JSON.stringify(this.state),
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-    }).then(
-    (response) => (response.json())
-      ).then((response)=> {
-    if (response.status === 'success') {
-      alert("Message Sent."); 
-      this.resetForm()
-    } else if(response.status === 'fail') {
-      alert("Message failed to send.")
-    }
-  })
+  emailjs.sendForm('service_uz6xs1s', 'template_1wxmqsj', e.target, 'user_uFdvrWxBw3kcJW1Ax2U3U')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
 }
 
   render() {
@@ -96,13 +86,13 @@ class Contact extends React.PureComponent {
 	    	<Col xs={4} md={4} className="pad__top about__text"> 
 	    		Contact Us	 
 	    		<br/>
-	    		
+
 			    <form onSubmit={this.handleSubmit} encType="multipart/form-data" autoComplete="off">
 			      <div className="form-group">
-			        <input name="name" type="text" className="form-control" placeholder="Name" value={this.state.name} onChange={this.handleChange} onBlur={this.handleBlur} required="required" />
+			        <input name="from_name" type="text" className="form-control" placeholder="Name" value={this.state.from_name} onChange={this.handleChange} onBlur={this.handleBlur} required="required" />
 			      </div>
 			          <div className="form-group">
-			        <input name="email" type="email" className="form-control" placeholder="Email" value={this.state.email} onChange={this.handleChange} onBlur={this.handleBlur} required="required" />
+			        <input name="reply_to" type="email" className="form-control" placeholder="Email" value={this.state.reply_to} onChange={this.handleChange} onBlur={this.handleBlur} required="required" />
 			      </div>
 			        <div className="form-group">
 			        <textarea name="message" type="textarea" rows={6} className="form-control" placeholder="Message" value={this.state.message} onChange={this.handleChange} onBlur={this.handleBlur} required="required" />
