@@ -7,7 +7,7 @@ import Image from 'react-bootstrap/Image'
 import '../styles/About.css'
 import * as emailjs from 'emailjs-com'
 import { Button, FormFeedback, Form, FormControl, FormGroup, Label, Input } from 'react-bootstrap'
-
+import Alert from 'react-bootstrap/Alert'
 
 class Contact extends React.PureComponent {
 	constructor(props) {
@@ -17,7 +17,7 @@ class Contact extends React.PureComponent {
 	  reply_to: '',
 	  message: '',
 	  error: '',
-	  thankyou: false
+	  alert: false
 	};
 	this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -64,9 +64,11 @@ class Contact extends React.PureComponent {
       }, (error) => {
           console.log(error.text);
       });
+  this.setState({from_name: '', reply_to: '', message: '', alert: true});
 }
 
   render() {
+  	console.log("alert " + this.state.alert);
     return (
       <Container fluid>
       <Row className="spacing"></Row>
@@ -85,7 +87,7 @@ class Contact extends React.PureComponent {
 	    	<Col xs={1} md={1}></Col>
 	    	<Col xs={4} md={4} className="pad__top about__text"> 
 	    		Contact Us	 
-	    		<br/>
+	    		<br/><hr/>
 
 			    <form onSubmit={this.handleSubmit} encType="multipart/form-data" autoComplete="off">
 			      <div className="form-group">
@@ -99,6 +101,12 @@ class Contact extends React.PureComponent {
 			      </div>
 			        <p className="text-center mb-0"><input type="submit" className="btn btn-primary w-100" value="Submit Now" /></p>
 			    </form>
+			    <br/>
+			    	<Alert variant="success" show={this.state.alert}> 
+					  <p>
+					    We will contact you soon!
+					  </p>
+					</Alert>
 			</Col>
 	    </Col>
 	    <Col></Col>
